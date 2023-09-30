@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: omnifood-app-deployment
+spec:
+  selector:
+    matchLabels:
+      app: omnifood
+  template:
+    metadata:
+      labels:
+        app: omnifood
+    spec:
+      containers:
+      - name: omnifood-application
+        image: tejachittamuri/omnifoodapp:v1
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 80

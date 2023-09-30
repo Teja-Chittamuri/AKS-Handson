@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - http:
+     paths:
+      - path: "/home"
+        pathType: "Prefix"
+        backend:
+          service:
+            name: nginx-clusterip-service
+            port: 
+              number: 80
+      - path: "/frontend"
+        pathType: "Prefix"
+        backend:
+          service:
+            name: nginx-clusterip-service
+            port: 
+              number: 80
+      - path: "/backend"
+        pathType: "Prefix"
+        backend:
+          service:
+            name: nginx-clusterip-service
+            port: 
+              number: 80
+      - path: "/"
+        pathType: "Prefix"
+        backend:
+          service:
+            name: nginx-clusterip-service
+            port: 
+              number: 80

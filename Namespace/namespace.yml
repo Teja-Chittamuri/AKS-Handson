@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+   name: omnifood-app
+---
+
+apiVersion: v1
+kind: LimitRange   # Define compute resources like cpu and memory limit at NS level
+metadata:
+  name: ns-level-limitrange
+  namespace: omnifood-app
+spec:
+  limits:
+  - default: # this section defines default limits
+      cpu: 400m
+      memory: 256Mi
+    defaultRequest: # this section defines default requests
+      cpu: 200m
+      memory: 128Mi
+    type: Container
+
+---
+
+apiVersion: v1
+kind: ResourceQuota #Define compute resources like cpu and memory limit along with that kubernetes objects limit at NS level
+metadata:
+    name: rg-quota
+    namespace: omnifood-app
+spec:
+    hard:
+      requests.cpu: "1"
+      requests.memory: 1Gi
+      limits.cpu: "2"
+      limits.memory: 2Gi
+      pods: "5"
+      services: "5"
+      configmaps: "3"
+

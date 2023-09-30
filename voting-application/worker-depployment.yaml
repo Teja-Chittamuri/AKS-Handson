@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: voteapp
+  template:
+    metadata:
+      labels:
+        app: voteapp
+    spec:
+      containers:
+      - name: worker-deployment
+        image: tejachittamuri/workerrole

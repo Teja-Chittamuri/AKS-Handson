@@ -1,0 +1,24 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata:
+  name: app-deployment 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: omnifoodapp
+      tier: frontend
+  template:
+    metadata:
+       labels:
+         app: omnifoodapp
+         tier: frontend
+    spec:
+     containers:
+       - name: omnifood-app
+         image:  chittamuriteja.azurecr.io/omnifoodapp:v1
+         imagePullPolicy: Always
+         ports:
+           - containerPort: 80
+     imagePullSecrets:
+        - name: acrdemo-secret

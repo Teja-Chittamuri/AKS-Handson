@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app3-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: omnifood
+  template:
+    metadata:
+      labels:
+        app: omnifood
+    spec:
+      containers:
+      - name: omnifood-container
+        image: tejachittamuri/omnifoodapp:v1
+        ports:
+        - containerPort: 80

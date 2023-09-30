@@ -1,0 +1,23 @@
+# Namespace
+
+---
+apiVersion: v1 
+kind: Namespace
+metadata:  
+   name: omnifood-app
+
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+    name: omniapp-rg-quota
+    namespace: omnifood-app
+spec:
+    hard:
+      requests.cpu: "1"
+      requests.memory: 128Mi
+      limits.cpu: "2"
+      limits.memory: 256Mi       
+      pods: "5" 
+      services: "5"
+      configmaps: "3"
